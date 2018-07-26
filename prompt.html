@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/base.css"/>
+		<link rel="stylesheet" type="text/css" href="css/animate.min.css"/>
+		<script type="text/javascript" src="js/jquery1.42.min.js" ></script>
+		<script type="text/javascript" src="js/base_form.js" ></script>
+		<style>
+			.showstyle input{background: green;color: #fff;border: 0;padding: 5px 25px;cursor: pointer;}
+			ol{padding: 15px 0;}
+			ol li{height: 30px;line-height: 30px;}
+		</style>
+	</head>
+	<body style="width: 90%;margin: 20px auto;">
+		<h1 style="text-align: center;">提示插件使用方法！</h1>
+		<div class="showstyle" style="width: 100%;padding: 20px 0;">
+			<input type="button" id="" onclick="clicks('0',this)" value="正中间" />
+			<input type="button" id="" onclick="clicks('1',this)" value="顶部水平居中" />
+			<input type="button" id="" onclick="clicks('2',this)" value="底部水平居中" />
+			<input type="button" id="" onclick="clicks('3',this)" value="左边垂直居中" />
+			<input type="button" id="" onclick="clicks('4',this)" value="右边垂直居中" />
+			<input type="button" id="" onclick="clicks('5',this)" value="左上角" />
+			<input type="button" id="" onclick="clicks('6',this)" value="右上角" />
+			<input type="button" id="" onclick="clicks('7',this)" value="左下角" />
+			<input type="button" id="" onclick="clicks('8',this)" value="右下角；这里可以是任意数据" />
+		</div>
+		<h4>备注：<small>本插件动画效果可以配合Animate.css使用；也可自己写css3动画效果</small></h4>
+		<h4>参数解释：</h4>
+		<ol>
+			<li>showtime:展示的时间（默认2.5秒），单位为毫秒；如：2500=2.5秒</li>
+			<li>enter:进场动画，本案例配合Animate.css使用；如：animated bounceInLeft（默认;class）</li>
+			<li>out:出场动画，本案例配合Animate.css使用；如：animated rollOut（默认;class）</li>
+			<li>place：展示位置（0垂直水平居中（默认）；1顶部水平居中；2底部水平居中；3左边垂直居中；4 右边垂直居中；5左上角；6右上角；7左下角；其它数字统一为//右下角）</li>
+			<li>zindex&nbsp;&nbsp;&nbsp;&nbsp;z-index(999默认)</li>
+			<li>cbstyle:展示内容的样式（默认调用".cb_prompt"）</li>
+			<li>animateTime:你写的CSS3的动画效果时间，Animate.css的动画时间是1秒，即默认参数为（1000）</li>
+			<li>msg：提示内容</li>
+		</ol>
+		<h4>使用方法：</h4>
+		<p>$("body").prompt("展示的数据")</p>
+		<p>
+			$("body").prompt({
+				showtime:"2500",//展示的时间  单位毫秒
+				msg:"展示的数据"
+			})
+		</p>
+		<script>
+			function clicks(num,_this){
+				$("body").prompt({
+					place:num,
+					msg:"hello，NOW"+$(_this).val()+"！"
+				})
+			}
+		</script>
+	</body>
+</html>

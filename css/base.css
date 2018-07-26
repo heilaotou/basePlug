@@ -1,0 +1,9 @@
+*{padding: 0;margin: 0;}
+
+/*提示 prompt*/
+.cb_prompt{
+	padding: 5px 18px;
+	border-radius: 5px;
+	background: rgba(0,0,0,.5);
+	color: #fff;
+}
