@@ -1,6 +1,7 @@
 $(function(){
 	var winHei = $(window).height();//屏幕可视高度
 	var winWei = $(window).width();//屏幕可视宽度
+	var cleartimeout_c,cleartimeout_d;
 	jQuery.fn.extend({
 		//关键词、字  高亮处理
 		highlight:function(option){
@@ -26,6 +27,8 @@ $(function(){
 		//提示
 		prompt:function(option){
 			this.each(function(){
+				clearTimeout(cleartimeout_c);
+				clearTimeout(cleartimeout_d);
 				$(".cb_prompt_show").remove();
 				if(typeof option  != "object"){
 					option = {
@@ -78,11 +81,11 @@ $(function(){
 						$(".cb_prompt_show").css({right:"5%",bottom:"5%"});
 						break;
 				}
-				var c = setTimeout(function(){
+				cleartimeout_c = setTimeout(function(){
 					$(".cb_prompt_show").removeClass(args.enter);
 					$(".cb_prompt_show").addClass(args.out);
 				},parseInt(args.showtime));
-				var d = setTimeout(function(){
+				cleartimeout_d = setTimeout(function(){
 					$(".cb_prompt_show").remove();
 				},parseInt(args.showtime)+parseInt(args.animateTime))
 			})
