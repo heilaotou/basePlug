@@ -109,28 +109,29 @@ $(function(){
 		},
 		//滚动视差
 		scrolls:function(option){
-			$(window).scroll(function() {
-				this.each(function(){
-					//height 出现多少  loop动画次数
-					var args = {
-						height:100,
-						enter:"animated bounceInDown",//进入动画
-						out:"",//出去动画
-						loop:0,//执行次数  0  单次  1循环
+			this.each(function(){
+				var _this = $(this);
+				var args = {
+					height:100,
+					enter:"animated bounceInDown",//进入动画
+					out:"animated rotateOutDownLeft",//出去动画
+					loop:0,//执行次数  0  单次  1循环
+				}
+				$.extend(args,option);
+				window.addEventListener("scroll",function(e){
+					var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+					if(_this.offset().top <= scrollTop+winHei) {
+						_this.removeClass(args.out);
+						_this.addClass(args.enter);
+						_this.css("opacity","1")
+					}else if(_this.offset().top >= scrollTop+winHei-100){
+						_this.removeClass(args.enter);
+						_this.addClass(args.out);
+						_this.css("opacity","0")
 					}
-					$.extend(args,option);
-					//$(window).scroll(function() {
-						console.log("00")
-	//					$(this).each(function() {
-	//						var scrollTop = $(this).offset().top;
-	//						if(scrollTop >= $(window).scrollTop() && scrollTop < ($(window).scrollTop() + $(window).height()-500)) {
-	//							$(this).addClass(args.enter)
-	//						}
-	//					})
-					//});
-				})
-				return this;
+				});
 			})
+			return this;
 		},
 		//距离顶部显示隐藏
 		scroll:function(option){
