@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/jquery1.42.min.js" ></script>
+		<script type="text/javascript" src="js/base_form.js" ></script>
+		<style>
+			*{padding: 0;margin: 0;}
+			h2{
+				text-align: center; 
+				background: green;
+				height: 60px;
+				line-height: 60px; 
+				width: 100%;
+				position: fixed;
+				top: 0;
+				color: #fff;
+			}
+			h3{margin-top: 10px;}
+			.headroom1,.headroom2,.headroom3{color: #fff; width: 33%; margin: 0 0.3%;height: 70px;position: fixed;top: 65px;}
+			.headroom1{
+				background: #808080;
+			}
+			.headroom2{
+				background: goldenrod;
+				left: 33.33%;
+			}
+			.headroom3{
+				background: #FF0000;
+				left: 66.66%;
+			}
+		</style>
+	</head>
+	<body style="height: 900px;">
+		<h2 class="ss">六月初博客插件之页头隐藏</h2>
+		<div id="ww"  class="ss" style="width: 30px;height: 30px;position: fixed;right: 20px;bottom: 20px;background: #f00;">
+			
+		</div>
+		
+		<div class="headroom1" style="">
+			<code>
+				$(function(){
+					$(".headroom1").headroom();
+				})
+			</code>
+		</div>
+		<div class="headroom2" style="">
+			<code>
+				$(function(){
+					$(".headroom2").headroom("fade");
+				})
+			</code>
+		</div>
+		<div class="headroom3" style="">
+			<code>
+				$(function(){
+					$(".headroom3").headroom("slide");
+				})
+			</code>
+		</div>
+		<div id="" style="width: 90%;margin: 0 auto;margin-top: 250px;">
+			<h3>该插件是什么？</h3>
+			<p>它能在页面滚动时做出响应。当页面向下滚动时，导航条消失，当页面向上滚动时，导航条就出现了。</p>
+			<h3>该插件的优势？</h3>
+			<p>固定页头（导航条）可以方便用户在各个页面之间切换</p>
+			<p>大屏幕一般都是宽度大于高度的，也就是说屏幕高度要少一些。固定页头会占用一部分本来可以用于展示内容的区域。小屏幕一般是高度较大，但是别忘了，屏幕本来就小，页头再占用一部分的话，屏幕可用于展示内容的区域当然还是少。</p>
+			<p>该插件能帮你把不需要的页面元素在合适的时间展示出来，让用户花更多时间关注你页面上的内容。</p>
+			<h3>该插件如何使用？</h3>
+			<p>
+				<code>
+					$(function(){
+						$(".ss").headroom("fade");
+					})
+				</code>
+			</p>
+			<h3>参数解释</h3>
+			<ol>
+				<li>默认:slide滑动显示隐藏</li>
+				<li>fade淡入淡出</li>
+				<li>slide滑动显示隐藏</li>
+			</ol>
+		</div>
+		<script>
+			$(function(){
+				$(".ss").headroom("fade");
+				
+				$(".headroom1").headroom();
+				$(".headroom2").headroom("fade");
+				$(".headroom3").headroom("slide滑动显示隐藏");
+			})
+		</script>
+	</body>
+</html>

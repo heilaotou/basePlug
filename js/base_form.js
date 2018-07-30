@@ -136,27 +136,24 @@ $(function(){
 		//距离顶部显示隐藏
 		scroll:function(option){
 			this.each(function(){
+				var _this = $(this);
 				var args = {
-					direction:"top",
 					distance:100,
-					action:"show"
 				}
 				$.extend(args,option);
-				$(window).scroll(function(){
-					// 滚动条距离顶部的距离 大于 200px时
-					if($(window).scrollTop() >= args.distance){
-						$(".scroll_top").fadeIn(1000); // 开始淡入
-					} else{
-						$(".scroll_top").stop(true,true).fadeOut(1000); // 如果小于等于 200 淡出
+				window.addEventListener("scroll",function(e){
+					var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+					if(scrollTop >= parseInt(args.distance)){
+						_this.show();
+					}else{
+						_this.hide();
 					}
 				});
-				
-				
 			})
 			return this;
 		},
 		//回到顶部或去底部
-		/*go:function(option){
+		goup:function(option){
 			this.each(function(){
 				//默认参数设置
 				var args = {
@@ -168,7 +165,71 @@ $(function(){
 				alert(aa+"ppp")
 				$("html,body").animate({scrollTop:0}, slow);
 			})
-		}*/
+		},
+		//手风琴效果
+		accordion:function(option){
+			this.each(function(){
+				var _this = $(this);
+				//默认参数设置
+				var args = {
+					active:"click",//动作效果  点击和鼠标放上去   click  mouseover 默认点击
+					show:true,//第几个打开  默认不打开
+					direction:"vertical",//方向  默认垂直  参数：vertical  horizontal
+				};
+				$.extend(args,option);
+				_this.find("div").css("overflow","hidden");
+				_this.find("div").hide();
+				_this.click(function(){
+//					if(has())
+					var className = $(this)
+					var _hei = _this.find("div").outerHeight();
+					_this.find("div").addClass("accordion_active")
+					_this.find("div").show()
+					_this.find("div").height(0);
+//					_this.find("div").height(_hei)
+					_this.find("div").animate({height:_hei});
+					
+				})
+				
+			})
+		},
+		//监听鼠标
+		headroom:function(option){
+			var selector = this.selector;
+			var p=0,t=0,slide=false;  
+			if(option == "" || option == null){
+				slide = true;
+			}else{
+				if(option == "slide"){
+					slide = true;
+				}else if(option == "fade"){
+					slide = false;
+				}else{
+					slide = true;
+				}
+			}
+			window.addEventListener("scroll",function(e){
+	            p = $(this).scrollTop();
+	            if(t<=p){//下滚  
+	            	if(slide){
+	            		$(selector).slideUp()
+	            	}else{
+	            		$(selector).fadeOut()
+	            	}
+	                
+	            }  
+	            else{//上滚 
+	            	if(slide){
+	            		$(selector).slideDown()
+	            	}else{
+	            		$(selector).fadeIn()
+	            	}
+	                
+	            }
+	            setTimeout(function(){t = p;},0);     
+			});
+		}
+		
 
 
 /*···································华丽的分界线··················································*/
